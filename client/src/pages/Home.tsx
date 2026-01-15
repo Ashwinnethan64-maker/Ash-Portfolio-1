@@ -585,9 +585,9 @@ export default function Home() {
                   <CyberButton 
                     type="submit" 
                     className="w-full"
-                    disabled={contactMutation.isPending}
+                    disabled={isSubmitting}
                   >
-                    {contactMutation.isPending ? "Transmitting..." : "Send Transmission"}
+                    {isSubmitting ? "Transmitting..." : "Send Transmission"}
                   </CyberButton>
                 </form>
               </Form>
@@ -610,5 +610,3 @@ export default function Home() {
     </div>
   );
 }
-
-import { Link } from "wouter";
