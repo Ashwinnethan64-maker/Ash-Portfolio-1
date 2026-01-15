@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link as ScrollLink } from "react-scroll";
 import { useForm } from "react-hook-form";
@@ -13,8 +14,9 @@ import { SectionHeading } from "@/components/SectionHeading";
 import LabelBadge from "@/components/ui/label-badges";
 import { Shield, Cpu, Terminal as TerminalIcon, Award, GraduationCap, Briefcase, Mail, MapPin, Linkedin, Github, Globe, Search, BarChart } from "lucide-react";
 
-import { ZoomParallax } from "@/components/ui/zoom-parallax";
 import { ImageAutoSlider } from "@/components/ui/image-auto-slider";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 export default function Home() {
   const contactMutation = useSubmitContact();
@@ -39,47 +41,76 @@ export default function Home() {
     });
   };
 
-  const skills = [
-    { name: "Network Security", level: 90, icon: Shield },
-    { name: "Ethical Hacking", level: 85, icon: TerminalIcon },
-    { name: "Linux Administration", level: 88, icon: Cpu },
-    { name: "Web App Security", level: 82, icon: Globe },
-    { name: "Vulnerability Scanning", level: 85, icon: Search },
-    { name: "SIEM Analysis", level: 75, icon: BarChart },
-  ];
-
-  const education = [
+  const skillCategories = [
     {
-      period: "2025 - 2029",
-      degree: "B.Tech in Computer Science & Cybersecurity",
-      institution: "Kalvium & Yenepoya University",
-      desc: "Specializing in advanced network defense, cryptography, and secure software development."
+      title: "Security Operations",
+      skills: [
+        { name: "Network Security", level: 90, icon: Shield },
+        { name: "SIEM Analysis", level: 75, icon: BarChart },
+        { name: "Vulnerability Scanning", level: 85, icon: Search }
+      ]
     },
     {
-      period: "2023 - 2025",
-      degree: "Higher Secondary Education",
-      institution: "Sri Chaitanya PU College",
-      desc: "Built a strong foundation in mathematics, physics, and computer science principles."
+      title: "Offensive Security",
+      skills: [
+        { name: "Ethical Hacking", level: 85, icon: TerminalIcon },
+        { name: "Web App Security", level: 82, icon: Globe },
+        { name: "Exploit Development", level: 70, icon: Cpu }
+      ]
+    },
+    {
+      title: "Administration",
+      skills: [
+        { name: "Linux Administration", level: 88, icon: Cpu },
+        { name: "Network Defense", level: 85, icon: Shield }
+      ]
     }
   ];
+
+  const projects = [
+    {
+      id: "agronova",
+      title: "AgroNova",
+      subtitle: "Sustainable Agriculture & Supply Chain Security",
+      desc: "An innovative platform focused on securing agricultural supply chains using blockchain and AI for threat detection.",
+      image: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=800&q=80",
+      proof: [
+        "Implemented end-to-end encryption for farmer-to-consumer communication.",
+        "Integrated AI models to detect anomalies in supply chain logistics.",
+        "Developed a secure dashboard for real-time monitoring of agricultural assets."
+      ],
+      tag: "Offensive",
+      tagColor: "bg-red-500/20 text-red-400 border-red-500/30"
+    }
+  ];
+
+  const [selectedProject, setSelectedProject] = useState<any>(null);
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-white/5">
+      <nav className="fixed top-0 left-0 right-0 z-[100] bg-background/80 backdrop-blur-md border-b border-white/5">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <div className="font-display font-bold text-2xl text-primary tracking-[0.2em] uppercase">
             Ash
           </div>
           <div className="hidden md:flex gap-8">
-            {["About", "Experience", "Skills", "Contact"].map((item) => (
+            {[
+              { name: "About", to: "about" },
+              { name: "Experience", to: "experience" },
+              { name: "Skills", to: "skills" },
+              { name: "Projects", to: "projects" },
+              { name: "Contact", to: "contact" }
+            ].map((item) => (
               <ScrollLink
-                key={item}
-                to={item.toLowerCase().replace(" ", "-")}
+                key={item.name}
+                to={item.to}
                 smooth={true}
+                spy={true}
+                activeClass="text-primary font-bold drop-shadow-[0_0_8px_rgba(0,243,255,0.6)]"
                 className="font-mono text-sm text-muted-foreground hover:text-primary cursor-pointer transition-colors uppercase tracking-wider"
               >
-                {item}
+                {item.name}
               </ScrollLink>
             ))}
           </div>
@@ -274,31 +305,33 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <SectionHeading title="Skills & Arsenal" subtitle="Capabilities matrix" align="center" />
           
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {skills.map((skill, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
-                className="cyber-card p-6 rounded-xl flex flex-col items-center text-center group"
-              >
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                  <skill.icon className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">{skill.name}</h3>
-                <div className="w-full bg-secondary h-2 rounded-full overflow-hidden mt-2">
-                  <motion.div 
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.level}%` }}
-                    transition={{ duration: 1, delay: 0.5 }}
-                    className="h-full bg-primary shadow-[0_0_10px_rgba(0,255,255,0.5)]"
-                  />
-                </div>
-                <span className="text-xs font-mono text-muted-foreground mt-2 self-end">{skill.level}% Proficiency</span>
-              </motion.div>
-            ))}
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              {skillCategories.map((category, idx) => (
+                <AccordionItem key={idx} value={`item-${idx}`} className="cyber-card rounded-xl border border-white/5 overflow-hidden">
+                  <AccordionTrigger className="px-6 py-4 hover:no-underline group">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <Shield className="w-5 h-5 text-primary" />
+                      </div>
+                      <span className="text-xl font-bold text-white group-hover:text-primary transition-colors font-display">
+                        {category.title}
+                      </span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 pb-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                      {category.skills.map((skill, sIdx) => (
+                        <div key={sIdx} className="flex items-center gap-3 p-3 bg-secondary/20 rounded border border-white/5 hover:border-primary/30 transition-all group">
+                          <skill.icon className="w-5 h-5 text-primary/70 group-hover:text-primary transition-colors" />
+                          <span className="text-sm font-mono text-muted-foreground group-hover:text-white transition-colors">{skill.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
           
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -312,86 +345,89 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section className="py-24 bg-muted/30 border-y border-white/5">
+      <section id="projects" className="py-24 bg-muted/30 border-y border-white/5">
         <div className="container mx-auto px-6">
-          <SectionHeading title="Labs & Ops" subtitle="Simulation environments" />
+          <SectionHeading title="Featured Projects" subtitle="Operational deployments" />
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="cyber-card group p-0 rounded-xl overflow-hidden h-full flex flex-col">
-              <div className="h-48 bg-black relative overflow-hidden">
-                {/* matrix code rain effect placeholder */}
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&q=80')] bg-cover bg-center opacity-50 group-hover:scale-110 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
-                <div className="absolute bottom-4 left-4">
-                  <span className="px-2 py-1 bg-red-500/20 text-red-400 text-xs font-bold rounded border border-red-500/30 uppercase">Offensive</span>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project) => (
+              <div key={project.id} className="cyber-card group p-0 rounded-xl overflow-hidden h-full flex flex-col">
+                <div className="h-48 bg-black relative overflow-hidden">
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center opacity-50 group-hover:scale-110 transition-transform duration-700" 
+                    style={{ backgroundImage: `url(${project.image})` }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
+                  <div className="absolute bottom-4 left-4">
+                    <span className={`px-2 py-1 text-xs font-bold rounded border uppercase ${project.tagColor}`}>
+                      {project.tag}
+                    </span>
+                  </div>
+                </div>
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-xl font-bold mb-1">{project.title}</h3>
+                  <p className="text-primary/70 text-xs font-mono mb-3 uppercase tracking-wider">{project.subtitle}</p>
+                  <p className="text-muted-foreground text-sm mb-4 flex-1">
+                    {project.desc}
+                  </p>
+                  <CyberButton 
+                    size="sm" 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={() => setSelectedProject(project)}
+                  >
+                    View Proof
+                  </CyberButton>
                 </div>
               </div>
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold mb-2">TryHackMe Labs</h3>
-                <p className="text-muted-foreground text-sm mb-4 flex-1">
-                  Completed various learning paths focusing on web exploitation, network services, and privilege escalation techniques.
-                </p>
-                <a 
-                  href="https://tryhackme.com/p/AshwinNethan" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-primary text-sm hover:text-cyan-400 font-mono inline-flex items-center gap-1 group/link transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(0,243,255,0.8)]"
-                >
-                  View Profile <span className="text-xs transition-transform duration-300 group-hover/link:translate-x-1">➜</span>
-                </a>
-              </div>
-            </div>
-
-            <div className="cyber-card group p-0 rounded-xl overflow-hidden h-full flex flex-col">
-              <div className="h-48 bg-black relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('https://pixabay.com/get/g47243ef2bcdc520ec7f370d3cea85bf460b1f8868b6c9d2fc9d8591e3943c46cadf291eb6567581f9072c99f1ba42f58c405de68430cd2632720a211027404ee_1280.jpg')] bg-cover bg-center opacity-50 group-hover:scale-110 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
-                <div className="absolute bottom-4 left-4">
-                  <span className="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-bold rounded border border-green-500/30 uppercase">Labs</span>
-                </div>
-              </div>
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold mb-2">Hack The Box</h3>
-                <p className="text-muted-foreground text-sm mb-4 flex-1">
-                  Active participation in retired machines to practice real-world penetration testing methodologies in a controlled environment.
-                </p>
-                <a 
-                  href="https://app.hackthebox.com/profile/AshwinNethan" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-primary text-sm hover:text-cyan-400 font-mono inline-flex items-center gap-1 group/link transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(0,243,255,0.8)]"
-                >
-                  View Profile <span className="text-xs transition-transform duration-300 group-hover/link:translate-x-1">➜</span>
-                </a>
-              </div>
-            </div>
-
-            <div className="cyber-card group p-0 rounded-xl overflow-hidden h-full flex flex-col">
-              <div className="h-48 bg-black relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80')] bg-cover bg-center opacity-50 group-hover:scale-110 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
-                <div className="absolute bottom-4 left-4">
-                  <span className="px-2 py-1 bg-blue-500/20 text-blue-400 text-xs font-bold rounded border border-blue-500/30 uppercase">Defensive</span>
-                </div>
-              </div>
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold mb-2">SIEM Exploration</h3>
-                <p className="text-muted-foreground text-sm mb-4 flex-1">
-                  Setting up and configuring Splunk and ELK stack to ingest logs and create dashboards for threat visualization.
-                </p>
-                <a 
-                  href="#" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-primary text-sm hover:text-cyan-400 font-mono inline-flex items-center gap-1 group/link transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(0,243,255,0.8)]"
-                >
-                  View Demo <span className="text-xs transition-transform duration-300 group-hover/link:translate-x-1">➜</span>
-                </a>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
+
+      {/* Project Details Modal */}
+      <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
+        <DialogContent className="max-w-2xl bg-background border-primary/30 p-0 overflow-hidden">
+          {selectedProject && (
+            <div className="relative">
+              <div className="h-64 bg-black relative">
+                <img 
+                  src={selectedProject.image} 
+                  alt={selectedProject.title} 
+                  className="w-full h-full object-cover opacity-60"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+                <div className="absolute bottom-6 left-6">
+                  <span className={`px-2 py-1 text-xs font-bold rounded border uppercase mb-2 inline-block ${selectedProject.tagColor}`}>
+                    {selectedProject.tag}
+                  </span>
+                  <h2 className="text-3xl font-bold text-white">{selectedProject.title}</h2>
+                  <p className="text-primary font-mono text-sm mt-1">{selectedProject.subtitle}</p>
+                </div>
+              </div>
+              <div className="p-8">
+                <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                  <Shield className="w-5 h-5 text-primary" />
+                  Mission Proof
+                </h3>
+                <div className="space-y-4">
+                  {selectedProject.proof.map((item: string, i: number) => (
+                    <div key={i} className="flex items-start gap-3 p-4 bg-secondary/30 rounded border border-white/5 hover:border-primary/20 transition-all">
+                      <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(0,243,255,0.8)] shrink-0" />
+                      <p className="text-muted-foreground text-sm leading-relaxed">{item}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-8 flex justify-end">
+                  <CyberButton onClick={() => setSelectedProject(null)}>
+                    Secure Session
+                  </CyberButton>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
 
       {/* Certifications Section */}
       <section className="py-24 relative overflow-hidden">
@@ -406,36 +442,6 @@ export default function Home() {
               "https://i.postimg.cc/VLc0GG5W/Screenshot-2025-08-06-193320.png",
               "https://i.postimg.cc/65954D89/Screenshot-2025-11-25-134905.png",
               "https://i.postimg.cc/sDDsg7Nk/Screenshot-2026-01-09-130845.png"
-            ]} 
-          />
-        </div>
-
-        <div className="mt-24">
-          <div className="container mx-auto px-6 mb-12">
-            <h3 className="text-xl font-mono text-primary text-center">// Deep Dive Parallax</h3>
-          </div>
-          <ZoomParallax 
-            images={[
-              { 
-                src: "https://i.postimg.cc/6ptR3jX5/Screenshot-2026-01-15-122227.png", 
-                alt: "Google AI for K12",
-                href: "https://i.postimg.cc/6ptR3jX5/Screenshot-2026-01-15-122227.png"
-              },
-              { 
-                src: "https://i.postimg.cc/VLc0GG5W/Screenshot-2025-08-06-193320.png", 
-                alt: "Enterprise Design Thinking (IBM)",
-                href: "https://i.postimg.cc/VLc0GG5W/Screenshot-2025-08-06-193320.png"
-              },
-              { 
-                src: "https://i.postimg.cc/65954D89/Screenshot-2025-11-25-134905.png", 
-                alt: "Gemini Certification (Google)",
-                href: "https://i.postimg.cc/65954D89/Screenshot-2025-11-25-134905.png"
-              },
-              { 
-                src: "https://i.postimg.cc/sDDsg7Nk/Screenshot-2026-01-09-130845.png", 
-                alt: "Campus Ambassador (Tech Corp)",
-                href: "https://i.postimg.cc/sDDsg7Nk/Screenshot-2026-01-09-130845.png"
-              }
             ]} 
           />
         </div>
