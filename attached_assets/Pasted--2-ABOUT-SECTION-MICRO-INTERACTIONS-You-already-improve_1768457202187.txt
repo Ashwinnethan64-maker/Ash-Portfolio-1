@@ -1,0 +1,169 @@
+✅ 2. ABOUT SECTION – MICRO INTERACTIONS
+
+You already improved content. Now add life.
+
+🔧 A. Focus Cards → Hover Reveal
+👉 Go to:
+
+21st.dev → Components → Hover Cards
+
+On hover:
+
+Show tools used
+
+Example:
+
+Ethical Hacking → Nmap, Burp, Labs
+
+Network Defense → Firewalls, Monitoring
+
+🎯 Subtle, powerful.
+
+🔧 B. Add “Current Focus” Line
+👉 Go to:
+
+21st.dev → UI Components → Alerts
+
+Example:
+
+Currently focusing on SOC fundamentals and SIEM analysis.
+
+✅ 3. SKILLS SECTION – FUNCTIONAL + CLEAN
+❌ Don’t use:
+
+Sliders
+
+Progress bars
+
+✅ Do this instead:
+🔧 A. Skill Categories with Expand
+👉 Go to:
+
+21st.dev → UI Components → Accordions
+
+Example:
+
+Network Security
+
+TCP/IP
+
+Firewalls
+
+IDS/IPS
+
+Ethical Hacking
+
+Recon
+
+Web vulns
+
+Labs
+
+🎯 Recruiters like structured skills, not percentages.
+
+✅ 4. PROJECTS / LABS – TURN INTO PROOF
+
+This is where most portfolios fail.
+
+🔧 A. Clickable Lab Cards
+👉 Go to:
+
+21st.dev → Components → Cards
++ Dialogs / Modals
+
+On click:
+
+Opens modal:
+
+What you practiced
+
+Tools used
+
+What you learned
+
+Example:
+TryHackMe – Network Fundamentals
+
+Learned: TCP/IP, ports
+
+Tools: Wireshark
+
+🔧 B. Add Tags
+👉 Go to:
+
+UI Components → Badges
+
+Tags:
+
+Red Team
+
+Blue Team
+
+Beginner Friendly
+
+✅ 5. EXPERIENCE SECTION – TIMELINE FEEL
+👉 Go to:
+
+21st.dev → Components → Scroll Areas
+
+Scrollable vertical journey
+
+Keeps page compact
+
+Shows growth over time
+
+✅ 6. CONTACT – FUNCTIONAL, NOT BORING
+🔧 A. Real Contact Form Feedback
+👉 Go to:
+
+21st.dev → Forms
++ Toasts
+
+Show toast:
+
+“Message sent successfully”
+
+“Error sending message”
+
+🔧 B. Quick Actions
+👉 Go to:
+
+21st.dev → Buttons
+
+Add:
+
+Email me
+
+LinkedIn
+
+Resume (PDF)
+
+✅ 7. GLOBAL UX IMPROVEMENTS (IMPORTANT)
+🔧 A. Keyboard Navigation (Hacker Vibe 😎)
+
+Press K → open quick menu
+
+👉 Go to:
+
+21st.dev → Dialogs / Modals
+
+🔧 B. Scroll Indicator
+👉 Go to:
+
+21st.dev → Scroll Areas
+
+Shows progress on page
+
+🔧 C. Performance Check
+
+Reduce animations on mobile
+
+Disable terminal animation after load
+
+🚀 PRIORITY ORDER (DO THIS EXACTLY)
+
+1️⃣ Make terminal interactive
+2️⃣ Improve buttons + navigation
+3️⃣ Skills → Accordions
+4️⃣ Projects → Modals
+5️⃣ Contact → Toast feedback
