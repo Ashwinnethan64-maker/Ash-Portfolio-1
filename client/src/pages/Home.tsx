@@ -149,15 +149,8 @@ export default function Home() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-[100] bg-background/80 backdrop-blur-md border-b border-white/5">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <img 
-              src="https://i.postimg.cc/cJTSQJ2B/Whats-App-Image-2025-11-23-at-17-49-21-647fa574.jpg" 
-              alt="Ashwin Nethan" 
-              className="w-12 h-12 rounded-full border-2 border-primary/50 object-cover shadow-[0_0_15px_rgba(0,243,255,0.4)]"
-            />
-            <div className="font-display font-bold text-2xl text-primary tracking-[0.2em] uppercase hidden sm:block">
-              Ash
-            </div>
+          <div className="font-display font-bold text-2xl text-primary tracking-[0.2em] uppercase">
+            Ash
           </div>
           <div className="hidden md:flex gap-8">
             {[
@@ -667,15 +660,8 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-8 bg-background border-t border-white/5 text-center">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col items-center gap-4 mb-4">
-            <img 
-              src="https://i.postimg.cc/cJTSQJ2B/Whats-App-Image-2025-11-23-at-17-49-21-647fa574.jpg" 
-              alt="Ashwin Nethan" 
-              className="w-12 h-12 rounded-full border-2 border-primary/50 object-cover shadow-[0_0_10px_rgba(0,243,255,0.3)]"
-            />
-            <div className="font-display font-bold text-xl text-primary tracking-[0.2em] uppercase">
-              Ash
-            </div>
+          <div className="font-display font-bold text-xl text-primary tracking-[0.2em] uppercase mb-4">
+            Ash
           </div>
           <p className="text-muted-foreground text-sm font-mono">
             © {new Date().getFullYear()} Ashwin Nethan. Secure System. All rights reserved.
