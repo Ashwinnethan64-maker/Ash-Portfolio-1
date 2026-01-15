@@ -55,7 +55,7 @@ export default function Home() {
     {
       period: "2023 - 2025",
       degree: "Higher Secondary Education",
-      institution: "Sri Chaitanya",
+      institution: "Sri Chaitanya PU College",
       desc: "Built a strong foundation in mathematics, physics, and computer science principles."
     }
   ];
@@ -65,8 +65,8 @@ export default function Home() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-white/5">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="font-display font-bold text-2xl text-primary tracking-widest">
-            AN<span className="text-white">.SEC</span>
+          <div className="font-display font-bold text-2xl text-primary tracking-[0.2em] uppercase">
+            Ash
           </div>
           <div className="hidden md:flex gap-8">
             {["About", "Experience", "Skills", "Contact"].map((item) => (
@@ -145,20 +145,18 @@ export default function Home() {
           
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1 relative group">
-              {/* Profile Image Placeholder */}
+              {/* Profile Image */}
               <div className="aspect-square rounded-2xl bg-secondary relative overflow-hidden border border-white/10 group-hover:border-primary/50 transition-colors duration-500">
-                 {/* Unsplash image of a futuristic workspace/profile placeholder */}
-                {/* person coding on multiple screens in dark room */}
                 <img 
-                  src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=800&q=80" 
+                  src="@assets/WhatsApp_Image_2025-11-23_at_17.49.21_647fa574_1768458660952.jpg" 
                   alt="Ashwin Nethan" 
-                  className="object-cover w-full h-full opacity-60 grayscale group-hover:grayscale-0 transition-all duration-500"
+                  className="object-cover w-full h-full opacity-80 grayscale group-hover:grayscale-0 transition-all duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
+                <div className="absolute inset-0 bg-background/40 group-hover:bg-background/20 transition-colors duration-500" />
                 
                 {/* Cyber overlay elements */}
-                <div className="absolute top-4 right-4 w-16 h-16 border-t-2 border-r-2 border-primary/50 rounded-tr-xl" />
-                <div className="absolute bottom-4 left-4 w-16 h-16 border-b-2 border-l-2 border-primary/50 rounded-bl-xl" />
+                <div className="absolute top-4 right-4 w-16 h-16 border-t-2 border-r-2 border-primary/50 rounded-tr-xl group-hover:border-primary transition-colors duration-500" />
+                <div className="absolute bottom-4 left-4 w-16 h-16 border-b-2 border-l-2 border-primary/50 rounded-bl-xl group-hover:border-primary transition-colors duration-500" />
               </div>
             </div>
             
@@ -172,14 +170,20 @@ export default function Home() {
               </p>
               
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-secondary/40 p-4 rounded border border-white/5">
-                  <h4 className="text-primary font-mono text-xl mb-1">Active</h4>
+                <motion.div 
+                  whileHover={{ scale: 1.05 }}
+                  className="bg-secondary/40 p-4 rounded border border-white/5 hover:border-primary/50 hover:bg-secondary/60 transition-all duration-300 group cursor-default"
+                >
+                  <h4 className="text-primary font-mono text-xl mb-1 group-hover:text-cyan-400 group-hover:drop-shadow-[0_0_8px_rgba(0,243,255,0.8)] transition-all">Active</h4>
                   <span className="text-xs text-muted-foreground uppercase tracking-widest">Learner Status</span>
-                </div>
-                <div className="bg-secondary/40 p-4 rounded border border-white/5">
-                  <h4 className="text-primary font-mono text-xl mb-1">Open</h4>
+                </motion.div>
+                <motion.div 
+                  whileHover={{ scale: 1.05 }}
+                  className="bg-secondary/40 p-4 rounded border border-white/5 hover:border-primary/50 hover:bg-secondary/60 transition-all duration-300 group cursor-default"
+                >
+                  <h4 className="text-primary font-mono text-xl mb-1 group-hover:text-cyan-400 group-hover:drop-shadow-[0_0_8px_rgba(0,243,255,0.8)] transition-all">Open</h4>
                   <span className="text-xs text-muted-foreground uppercase tracking-widest">To Work</span>
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>
@@ -503,6 +507,9 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-8 bg-background border-t border-white/5 text-center">
         <div className="container mx-auto px-6">
+          <div className="font-display font-bold text-xl text-primary tracking-[0.2em] uppercase mb-4">
+            Ash
+          </div>
           <p className="text-muted-foreground text-sm font-mono">
             © {new Date().getFullYear()} Ashwin Nethan. Secure System. All rights reserved.
           </p>
