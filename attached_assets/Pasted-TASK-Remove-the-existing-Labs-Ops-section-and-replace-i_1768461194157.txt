@@ -1,0 +1,71 @@
+TASK: Remove the existing "Labs & Ops" section and replace it with a new "Projects" section.
+
+--------------------------------------------------
+SECTION CHANGES
+--------------------------------------------------
+1. Completely remove the "Labs & Ops" section and all its content.
+2. Create a new section titled:
+
+<PROJECTS />
+
+Subtitle:
+ // Selected works & live deployments
+
+--------------------------------------------------
+PROJECT CARD DESIGN
+--------------------------------------------------
+Use a card-based layout inspired by shadcn / 21st.dev components.
+
+Each project card must include:
+- Project image (thumbnail / banner)
+- Project title
+- Short description (1–2 lines)
+- "View Project →" action
+
+Design requirements:
+- Dark cybersecurity theme
+- Neon cyan accent on hover
+- Smooth hover transition (scale + glow)
+- Cursor pointer on hover
+- Fully responsive grid layout
+
+--------------------------------------------------
+PROJECT DATA (INITIAL PROJECT)
+--------------------------------------------------
+Add the following project:
+
+Title:
+AgroNova
+
+Description:
+A smart agriculture web application designed to improve farming decisions
+through technology-driven insights and modern UI.
+
+Project Image:
+- Use a relevant Unsplash placeholder image for agriculture/technology
+- Add a TODO comment to replace with a real project image later
+
+Project Link:
+https://agronova-app.vercel.app/
+
+--------------------------------------------------
+LINK BEHAVIOR
+--------------------------------------------------
+- Clicking anywhere on the project card OR the "View Project →" link
+  should redirect to the project website.
+- Open the link in a new browser tab.
+- Use rel="noopener noreferrer" for security best practices.
+
+--------------------------------------------------
+IMPLEMENTATION NOTES
+--------------------------------------------------
+- Use semantic <a> tags for navigation.
+- Do NOT change navbar, hero, or other sections.
+- Keep animations minimal and professional.
+- Ensure accessibility (focus states, readable contrast).
+
+--------------------------------------------------
+SCALABILITY
+--------------------------------------------------
+Structure the Projects section so more projects can be added easily
+using an array/map pattern.
