@@ -1,22 +1,47 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { ExpandableTabs } from "./ui/expandable-tabs";
+import { Terminal as TerminalIcon, Shield, Code, Mail } from "lucide-react";
 
 export function Terminal() {
+  const [activeTab, setActiveTab] = useState<number | null>(0);
   const [lines, setLines] = useState<string[]>([]);
   
-  const commands = [
-    { text: "sys.init()", delay: 500 },
-    { text: "loading modules...", delay: 800 },
-    { text: "network_security: [OK]", delay: 1200 },
-    { text: "ethical_hacking: [OK]", delay: 1500 },
-    { text: "detecting vulnerabilities...", delay: 2000 },
-    { text: "access granted. welcome, user.", delay: 2800 },
+  const statusLines = [
+    { text: "sys.init()", delay: 200 },
+    { text: "status: ONLINE", delay: 400 },
+    { text: "role: Cybersecurity Student", delay: 600 },
+    { text: "location: Mangaluru, India", delay: 800 },
+  ];
+
+  const skillsLines = [
+    { text: "listing skills...", delay: 200 },
+    { text: "network_security: [ADVANCED]", delay: 400 },
+    { text: "ethical_hacking: [INTERMEDIATE]", delay: 600 },
+    { text: "linux_kernel: [PROFICIENT]", delay: 800 },
+    { text: "siem_basics: [LEARNING]", delay: 1000 },
+  ];
+
+  const contactLines = [
+    { text: "fetching contact info...", delay: 200 },
+    { text: "email: ashwinnethan07@gmail.com", delay: 400 },
+    { text: "linkedin: linkedin.com/in/ashwin-nethan", delay: 600 },
+    { text: "status: Open to Internships", delay: 800 },
+  ];
+
+  const tabs = [
+    { title: "Status", icon: Shield },
+    { title: "Skills", icon: Code },
+    { title: "Contact", icon: Mail },
   ];
 
   useEffect(() => {
+    setLines([]);
     let timeoutIds: NodeJS.Timeout[] = [];
     
-    commands.forEach((cmd, index) => {
+    const currentLines = activeTab === 0 ? statusLines : activeTab === 1 ? skillsLines : contactLines;
+
+    currentLines.forEach((cmd, index) => {
       const id = setTimeout(() => {
         setLines(prev => [...prev, cmd.text]);
       }, cmd.delay);
@@ -24,28 +49,38 @@ export function Terminal() {
     });
 
     return () => timeoutIds.forEach(clearTimeout);
-  }, []);
+  }, [activeTab]);
 
   return (
     <div className="w-full max-w-lg bg-black/80 border border-primary/30 rounded-lg overflow-hidden shadow-lg backdrop-blur-md">
-      <div className="bg-primary/10 px-4 py-2 border-b border-primary/30 flex items-center gap-2">
-        <div className="w-3 h-3 rounded-full bg-red-500/80" />
-        <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-        <div className="w-3 h-3 rounded-full bg-green-500/80" />
-        <span className="ml-2 text-xs font-mono text-primary/70">bash -- user@ashwin-portfolio</span>
+      <div className="bg-primary/10 px-4 py-2 border-b border-primary/30 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-red-500/80" />
+          <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+          <div className="w-3 h-3 rounded-full bg-green-500/80" />
+          <span className="ml-2 text-xs font-mono text-primary/70">ashwin@terminal</span>
+        </div>
+        <ExpandableTabs 
+          tabs={tabs} 
+          activeColor="text-primary" 
+          className="bg-transparent border-none p-0 h-8"
+          onChange={setActiveTab}
+        />
       </div>
       <div className="p-4 font-mono text-sm h-[200px] overflow-y-auto">
-        {lines.map((line, i) => (
-          <motion.div 
-            key={i}
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="mb-1 text-green-400"
-          >
-            <span className="text-primary mr-2">➜</span>
-            {line}
-          </motion.div>
-        ))}
+        <AnimatePresence mode="popLayout">
+          {lines.map((line, i) => (
+            <motion.div 
+              key={`${activeTab}-${i}`}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="mb-1 text-green-400"
+            >
+              <span className="text-primary mr-2">➜</span>
+              {line}
+            </motion.div>
+          ))}
+        </AnimatePresence>
         <motion.div 
           animate={{ opacity: [0, 1, 0] }} 
           transition={{ repeat: Infinity, duration: 0.8 }}
