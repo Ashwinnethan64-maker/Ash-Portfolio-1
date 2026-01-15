@@ -14,6 +14,7 @@ import LabelBadge from "@/components/ui/label-badges";
 import { Shield, Cpu, Terminal as TerminalIcon, Award, GraduationCap, Briefcase, Mail, MapPin, Linkedin, Github, Globe, Search, BarChart } from "lucide-react";
 
 import { ZoomParallax } from "@/components/ui/zoom-parallax";
+import { ImageAutoSlider } from "@/components/ui/image-auto-slider";
 
 export default function Home() {
   const contactMutation = useSubmitContact();
@@ -393,12 +394,26 @@ export default function Home() {
       </section>
 
       {/* Certifications Section */}
-      <section className="py-24 relative">
+      <section className="py-24 relative overflow-hidden">
         <div className="container mx-auto px-6">
           <SectionHeading title="Certifications" subtitle="Validated credentials" align="center" />
         </div>
         
-        <div className="mt-12 relative">
+        <div className="mt-12">
+          <ImageAutoSlider 
+            images={[
+              "https://i.postimg.cc/6ptR3jX5/Screenshot-2026-01-15-122227.png",
+              "https://i.postimg.cc/VLc0GG5W/Screenshot-2025-08-06-193320.png",
+              "https://i.postimg.cc/65954D89/Screenshot-2025-11-25-134905.png",
+              "https://i.postimg.cc/sDDsg7Nk/Screenshot-2026-01-09-130845.png"
+            ]} 
+          />
+        </div>
+
+        <div className="mt-24">
+          <div className="container mx-auto px-6 mb-12">
+            <h3 className="text-xl font-mono text-primary text-center">// Deep Dive Parallax</h3>
+          </div>
           <ZoomParallax 
             images={[
               { 
