@@ -1,0 +1,85 @@
+TASK: Update the existing Skills section only.
+Do NOT create a new section.
+
+--------------------------------------------------
+SKILLS SECTION UPDATE
+--------------------------------------------------
+Enhance the current Skills section by adding a structured
+"Technical Skills" layout inspired by the reference image.
+
+Keep:
+- Existing Skills section title
+- Existing dark cybersecurity theme
+- Section position in the page
+
+--------------------------------------------------
+LAYOUT CHANGES
+--------------------------------------------------
+Inside the Skills section:
+- Use a card-based grid layout
+- 3 cards per row on desktop
+- Stack cards vertically on mobile
+- Each card represents a skill category
+
+Use shadcn-style Cards and Progress components.
+
+--------------------------------------------------
+TECHNICAL SKILL CATEGORIES
+--------------------------------------------------
+
+1. Programming
+- Python
+- JavaScript
+- HTML5
+- CSS3
+
+2. Cybersecurity
+- Network Security
+- Ethical Hacking (Basics)
+- Web Application Security
+- Vulnerability Scanning
+
+3. Tools & Platforms
+- Linux
+- Git / GitHub
+- TryHackMe
+- Hack The Box
+
+(Optional – only if space allows)
+4. Dev & Deployment
+- Vercel
+- GitHub Pages
+- Basic CI/CD concepts
+
+--------------------------------------------------
+SKILL VISUAL STYLE
+--------------------------------------------------
+For each skill:
+- Display skill name
+- Show a horizontal progress bar (visual indicator only)
+- Do NOT show percentages or numbers
+- Use neon cyan for progress fill
+- Smooth animation when section scrolls into view
+
+--------------------------------------------------
+HOVER & INTERACTIONS
+--------------------------------------------------
+- On hover over a skill card:
+  - Slight scale up
+  - Subtle neon cyan glow
+- Cursor pointer on hover
+- Smooth transitions (ease-in-out)
+
+--------------------------------------------------
+IMPLEMENTATION NOTES
+--------------------------------------------------
+- Use Tailwind CSS utilities for spacing and animation
+- Do NOT change existing skill content unless required
+- Merge this layout naturally into the current Skills section
+- Ensure performance-friendly animations
+- Ensure mobile responsiveness
+
+--------------------------------------------------
+SCALABILITY
+--------------------------------------------------
+Store skills as arrays/objects so new skills can be added easily later.

@@ -88,26 +88,38 @@ export default function Home() {
 
   const skillCategories = [
     {
-      title: "Security Operations",
+      title: "Programming",
       skills: [
-        { name: "Network Security", level: 90, icon: Shield },
-        { name: "SIEM Analysis", level: 75, icon: BarChart },
-        { name: "Vulnerability Scanning", level: 85, icon: Search }
+        { name: "Python", level: 85 },
+        { name: "JavaScript", level: 80 },
+        { name: "HTML5", level: 90 },
+        { name: "CSS3", level: 88 }
       ]
     },
     {
-      title: "Offensive Security",
+      title: "Cybersecurity",
       skills: [
-        { name: "Ethical Hacking", level: 85, icon: TerminalIcon },
-        { name: "Web App Security", level: 82, icon: Globe },
-        { name: "Exploit Development", level: 70, icon: Cpu }
+        { name: "Network Security", level: 75 },
+        { name: "Ethical Hacking (Basics)", level: 70 },
+        { name: "Web Application Security", level: 65 },
+        { name: "Vulnerability Scanning", level: 80 }
       ]
     },
     {
-      title: "Administration",
+      title: "Tools & Platforms",
       skills: [
-        { name: "Linux Administration", level: 88, icon: Cpu },
-        { name: "Network Defense", level: 85, icon: Shield }
+        { name: "Linux", level: 85 },
+        { name: "Git / GitHub", level: 90 },
+        { name: "TryHackMe", level: 75 },
+        { name: "Hack The Box", level: 60 }
+      ]
+    },
+    {
+      title: "Dev & Deployment",
+      skills: [
+        { name: "Vercel", level: 80 },
+        { name: "GitHub Pages", level: 85 },
+        { name: "Basic CI/CD concepts", level: 65 }
       ]
     }
   ];
@@ -352,41 +364,42 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <SectionHeading title="Skills & Arsenal" subtitle="Capabilities matrix" align="center" />
           
-          <div className="max-w-3xl mx-auto">
-            <Accordion type="single" collapsible className="w-full space-y-4">
-              {skillCategories.map((category, idx) => (
-                <AccordionItem key={idx} value={`item-${idx}`} className="cyber-card rounded-xl border border-white/5 overflow-hidden">
-                  <AccordionTrigger className="px-6 py-4 hover:no-underline group">
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                        <Shield className="w-5 h-5 text-primary" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {skillCategories.map((category, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ scale: 1.03 }}
+                className="cyber-card p-6 rounded-xl border border-white/5 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(0,243,255,0.2)] transition-all duration-300 cursor-pointer flex flex-col"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Shield className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white font-display">
+                    {category.title}
+                  </h3>
+                </div>
+                
+                <div className="space-y-6">
+                  {category.skills.map((skill, sIdx) => (
+                    <div key={sIdx} className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-mono text-muted-foreground">{skill.name}</span>
                       </div>
-                      <span className="text-xl font-bold text-white group-hover:text-primary transition-colors font-display">
-                        {category.title}
-                      </span>
+                      <div className="h-1.5 w-full bg-secondary/30 rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${skill.level}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1, ease: "easeOut" }}
+                          className="h-full bg-primary shadow-[0_0_10px_rgba(0,243,255,0.5)]"
+                        />
+                      </div>
                     </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                      {category.skills.map((skill, sIdx) => (
-                        <div key={sIdx} className="flex items-center gap-3 p-3 bg-secondary/20 rounded border border-white/5 hover:border-primary/30 transition-all group">
-                          <skill.icon className="w-5 h-5 text-primary/70 group-hover:text-primary transition-colors" />
-                          <span className="text-sm font-mono text-muted-foreground group-hover:text-white transition-colors">{skill.name}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-          
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
-             {["Leadership", "Design Thinking", "Problem Solving", "Communication"].map((soft, i) => (
-               <div key={i} className="bg-secondary/20 border border-white/5 p-4 rounded text-center text-sm font-mono text-muted-foreground hover:text-white hover:border-primary/50 transition-all">
-                 {soft}
-               </div>
-             ))}
+                  ))}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
