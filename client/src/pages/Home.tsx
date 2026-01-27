@@ -206,7 +206,7 @@ export default function Home() {
               <div className="flex flex-col items-center">
                 <div className="flex gap-2">
                   <a 
-                    href="/assets/Ashwin_Nethan_Resume.pdf" 
+                    href="https://drive.google.com/file/d/1GMkvN_DBkcA-KLTac5QizVaaDRlf60cj/view?usp=drive_link" 
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
