@@ -13,7 +13,7 @@ import { Terminal } from "@/components/Terminal";
 import { CyberButton } from "@/components/CyberButton";
 import { SectionHeading } from "@/components/SectionHeading";
 import LabelBadge from "@/components/ui/label-badges";
-import { Shield, Cpu, Terminal as TerminalIcon, Award, GraduationCap, Briefcase, Mail, MapPin, Linkedin, Github, Globe, Search, BarChart } from "lucide-react";
+import { Shield, Cpu, Terminal as TerminalIcon, Award, GraduationCap, Briefcase, Mail, MapPin, Linkedin, Github, Globe, Search, BarChart, Download } from "lucide-react";
 
 import { ImageAutoSlider } from "@/components/ui/image-auto-slider";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
@@ -206,6 +206,21 @@ export default function Home() {
               <CyberButton variant="outline" onClick={() => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' })}>
                 Experience
               </CyberButton>
+              <div className="flex flex-col items-center">
+                <a 
+                  href="/assets/Ash_Resume.pdf" 
+                  download="Ashwin_Nethan_Resume.pdf"
+                  className="group"
+                >
+                  <CyberButton variant="outline" className="gap-2 bg-primary/5 border-primary/40 hover:border-primary hover:shadow-[0_0_15px_rgba(0,243,255,0.4)] transition-all">
+                    <Download className="w-4 h-4" />
+                    Download Resume
+                  </CyberButton>
+                </a>
+                <span className="text-[10px] font-mono text-muted-foreground mt-1 opacity-70 group-hover:opacity-100 transition-opacity">
+                  // Updated resume • PDF
+                </span>
+              </div>
             </div>
           </motion.div>
           
