@@ -208,7 +208,7 @@ export default function Home() {
               </CyberButton>
               <div className="flex flex-col items-center">
                 <a 
-                  href="/assets/Ash_Resume.pdf" 
+                  href="/assets/Ashwin_Nethan_Resume.pdf" 
                   download="Ashwin_Nethan_Resume.pdf"
                   className="group"
                 >
