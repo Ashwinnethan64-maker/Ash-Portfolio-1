@@ -1,5 +1,7 @@
 {
   "routes": [
     { "src": "/(.*)", "dest": "/index.html" }
-  ]
+  ],
+  "buildCommand": "cd client && npm run build",
+  "outputDirectory": "client/dist"
 }
